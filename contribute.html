@@ -26,18 +26,12 @@
     </nav>
 
     <main class="container contribute-container">
-        <header style="margin-bottom: 3rem;">
-            <h1 style="font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 0.5rem;">Submit a Canvas</h1>
-            <p>Contribute your vertical visualizer directly. It will be validated and automatically merged into the app.</p>
-        </header>
 
-        <section id="login-section" class="step-card auth-card" style="display: none; text-align: center; max-width: 500px; margin: 0 auto;">
-            <div class="github-icon-wrapper">
-                <i class="fab fa-github"></i>
-            </div>
-            <h3>Connect to GitHub</h3>
-            <p style="margin-bottom: 2.2rem; font-size: 0.95rem; line-height: 1.7;">To submit a canvas, we need to authenticate with your GitHub account. This allows the portal to submit a Pull Request on your behalf, crediting you for your contribution.</p>
-            <button id="login-btn" class="btn btn-primary" style="width: 100%; justify-content: center;">
+
+        <section id="login-section" class="auth-clean-section" style="display: none; text-align: center; max-width: 480px; margin: 4rem auto 0 auto;">
+            <h3 class="auth-title">Connect to GitHub</h3>
+            <p class="auth-desc">To submit a canvas, please authenticate with your GitHub account. This allows the portal to open a Pull Request on your behalf, crediting you directly for your contribution.</p>
+            <button id="login-btn" class="btn btn-primary btn-auth-login">
                 <i class="fab fa-github"></i> Log in with GitHub
             </button>
         </section>
