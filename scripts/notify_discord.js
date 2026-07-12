@@ -14,13 +14,13 @@ if (!webhookUrl) {
 
 function getAddedSongs() {
   try {
-    // Get canvas.json content before the merge (HEAD^1)
-    const beforeContent = execSync('git show HEAD^1:canvas.json').toString();
+    // Get music.json content before the merge (HEAD^1)
+    const beforeContent = execSync('git show HEAD^1:music.json').toString();
     const beforeData = JSON.parse(beforeContent);
     const beforeSongs = new Set(beforeData.items.map(item => `${item.song.toLowerCase()}|${item.artist.toLowerCase()}`));
 
-    // Get current canvas.json content
-    const afterContent = fs.readFileSync('canvas.json', 'utf8');
+    // Get current music.json content
+    const afterContent = fs.readFileSync('music.json', 'utf8');
     const afterData = JSON.parse(afterContent);
 
     return afterData.items.filter(item => {
@@ -28,14 +28,14 @@ function getAddedSongs() {
       return !beforeSongs.has(key);
     });
   } catch (err) {
-    console.error('Error parsing canvas.json or git diff:', err);
+    console.error('Error parsing music.json or git diff:', err);
     return [];
   }
 }
 
 const addedSongs = getAddedSongs();
 if (addedSongs.length === 0) {
-  console.log('No new songs added in canvas.json. Skipping notification.');
+  console.log('No new songs added in music.json. Skipping notification.');
   process.exit(0);
 }
 
@@ -44,7 +44,7 @@ let content = '';
 if (addedSongs.length === 1) {
   const song = addedSongs[0];
   const searchUrl = `https://lossless.echomusic.fun/?search=${encodeURIComponent(song.song)}`;
-  content = `New Canvas Added
+  content = `New Lossless Track Added
 
 Contributor: ${prAuthor}
 Song: ${song.song} by ${song.artist}
@@ -57,7 +57,7 @@ Pull Request: ${prLink}`;
     songList += `- ${song.song} by ${song.artist}\n  Link: ${searchUrl}\n`;
   });
 
-  content = `New Canvases Added
+  content = `New Lossless Tracks Added
 
 Contributor: ${prAuthor}
 Pull Request: ${prLink}

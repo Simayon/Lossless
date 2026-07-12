@@ -41,7 +41,7 @@
     <link rel="icon" type="image/png" href="App Logo/echo.png">
     <link rel="stylesheet" href="styles.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+
 </head>
 
 <body>
@@ -163,7 +163,7 @@
                 renderGallery(allItems.slice(0, 3));
                 renderAvailability(allItems);
                 const isLocal = window.location.protocol === 'file:';
-                document.getElementById('song-count').textContent = `${allItems.length} ${isLocal ? 'preview' : 'active'} canvases`;
+                document.getElementById('song-count').textContent = `${allItems.length} ${isLocal ? 'preview' : 'active'} tracks`;
             } else {
                 const filtered = allItems.filter(item => {
                     const combined = `${item.song} ${item.artist}`.toLowerCase();
@@ -175,7 +175,7 @@
             }
         }
 
-        async function loadCanvases() {
+        async function loadTracks() {
             try {
                 const response = await fetch(`./music.json?v=${Date.now()}`);
                 if (!response.ok) throw new Error('Failed to load metadata');
@@ -291,7 +291,7 @@
             handleSearch(e.target.value.toLowerCase());
         });
 
-        document.addEventListener('DOMContentLoaded', loadCanvases);
+        document.addEventListener('DOMContentLoaded', loadTracks);
     </script>
     <script>
         (function() {

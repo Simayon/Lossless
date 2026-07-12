@@ -354,8 +354,8 @@ document.addEventListener('DOMContentLoaded', () => {
             item.url.toLowerCase().includes(q)
         ).slice(0, 12);
 
-        if (!matches.length) {
-            existingResults.innerHTML     = '<p class="existing-no-results">No canvases found matching your query.</p>';
+        if (matches.length === 0) {
+            existingResults.innerHTML     = '<p class="existing-no-results">No tracks found matching your query.</p>';
             existingResults.style.display = 'block';
             return;
         }
@@ -626,7 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'PUT',
             headers: buildHeaders(),
             body: JSON.stringify({
-                message: `feat: upload canvas video for ${primaryEntry.song}`,
+                message: `feat: upload lossless track for ${primaryEntry.song}`,
                 content: base64Video,
                 branch: branchName
             })
@@ -674,7 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn('Warning syncing fork:', await syncRes.text());
         }
 
-        updateLoadingMessage('Creating Work Branch', 'Creating a separate branch for your canvas…');
+        updateLoadingMessage('Creating Work Branch', 'Creating a separate branch for your track…');
         const refRes = await fetch(`${GITHUB_API_URL}/repos/${forkOwner}/${TARGET_REPO}/git/ref/heads/main`, {
             headers: buildHeaders()
         });
@@ -793,7 +793,7 @@ document.addEventListener('DOMContentLoaded', () => {
         statusLoader.style.display      = 'none';
         statusSuccessIcon.style.display = 'block';
         statusTitle.textContent = 'Submission Sent!';
-        statusMessage.innerHTML = 'Thank you for your canvas submission! We have automatically created a Pull Request.<br><br>The continuous integration validation checks will run. Once they pass, a maintainer will review and manually merge your contribution into the live repository.';
+        statusMessage.innerHTML = 'Thank you for your lossless track submission! We have automatically created a Pull Request.<br><br>The continuous integration validation checks will run. Once they pass, a maintainer will review and manually merge your contribution into the live repository.';
         prLink.href = prUrl;
         prLinkContainer.style.display = 'block';
         statusActionBtn.textContent = 'Submit Another';

@@ -1,9 +1,9 @@
 const fs = require('fs');
 
-const CANVAS_FILE = 'canvas.json';
+const CANVAS_FILE = 'music.json';
 
 function fixCanvas() {
-  console.log('--- Starting canvas.json Auto-fix ---');
+  console.log('--- Starting music.json Auto-fix ---');
 
   if (!fs.existsSync(CANVAS_FILE)) {
     console.error(`Error: ${CANVAS_FILE} not found!`);
